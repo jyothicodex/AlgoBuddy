@@ -3,12 +3,27 @@ import React, { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import ArrayGenerator from "@/app/components/ui/randomArray";
 import CustomArrayInput from "@/app/components/ui/customArrayInput";
+import { saveToStorage, loadFromStorage,removeFromStorage, } from "@/utils/storage";
 
 const BubbleSortVisualizer = () => {
-  const [array, setArray] = useState([]);
+  
   const [sorting, setSorting] = useState(false);
   const [sorted, setSorted] = useState(false);
-  const [speed, setSpeed] = useState(1);
+  const [array, setArray] = useState(() =>
+    loadFromStorage("bubble-array", [])
+  );
+
+  const [speed, setSpeed] = useState(() =>
+    loadFromStorage("bubble-speed", 1)
+  );
+
+  useEffect(() => {
+    saveToStorage("bubble-array", array);
+  }, [array]);
+
+  useEffect(() => {
+    saveToStorage("bubble-speed", speed);
+  }, [speed]);
   const [comparisons, setComparisons] = useState(0);
   const [swaps, setSwaps] = useState(0);
   const [currentIndices, setCurrentIndices] = useState({ i: -1, j: -1 });
@@ -97,14 +112,22 @@ const BubbleSortVisualizer = () => {
 
   // Reset everything
   const reset = () => {
-    if (animationRef.current) {
-      clearTimeout(animationRef.current);
-    }
-    setArray([]);
-    setSorting(false);
-    setSorted(false);
-    resetStats();
-  };
+  if (animationRef.current) {
+    clearTimeout(animationRef.current);
+  }
+
+  // Clear persisted storage
+  removeFromStorage("bubble-array");
+  removeFromStorage("bubble-speed");
+
+  // Reset UI state
+  setArray([]);
+  setSpeed(1);
+  setSorting(false);
+  setSorted(false);
+
+  resetStats();
+};
 
   // Clean up on unmount
   useEffect(() => {
