@@ -12,7 +12,6 @@ function bubbleSort(arr) {
     for (let j = 0; j < n - i - 1; j++) {
       // Swap if current element is greater than next
       if (arr[j] > arr[j + 1]) {
-        // ES6 destructuring assignment for swap
         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
       }
     }
@@ -36,7 +35,6 @@ def bubble_sort(arr):
         for j in range(n - i - 1):
             # Swap if current element is greater than next
             if arr[j] > arr[j + 1]:
-                # Python tuple unpacking for swap
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
     return arr
 
@@ -51,13 +49,9 @@ public class BubbleSort {
     public static void bubbleSort(int[] arr) {
         int n = arr.length;
         
-        // Outer loop for passes
         for (int i = 0; i < n - 1; i++) {
-            // Inner loop for comparisons
             for (int j = 0; j < n - i - 1; j++) {
-                // Swap if current element is greater than next
                 if (arr[j] > arr[j + 1]) {
-                    // Traditional swap using temp variable
                     int temp = arr[j];
                     arr[j] = arr[j + 1];
                     arr[j + 1] = temp;
@@ -68,21 +62,9 @@ public class BubbleSort {
 
     public static void main(String[] args) {
         int[] unsortedArray = {64, 34, 25, 12, 22, 11, 90};
-        System.out.print("Unsorted array: ");
-        printArray(unsortedArray);
-        
         bubbleSort(unsortedArray);
-        
         System.out.print("Sorted array: ");
-        printArray(unsortedArray);
-    }
-    
-    // Helper method to print array
-    private static void printArray(int[] arr) {
-        for (int num : arr) {
-            System.out.print(num + " ");
-        }
-        System.out.println();
+        for (int num : unsortedArray) System.out.print(num + " ");
     }
 }`,
 
@@ -90,13 +72,9 @@ public class BubbleSort {
 #include <stdio.h>
 
 void bubbleSort(int arr[], int n) {
-    // Outer loop for passes
     for (int i = 0; i < n - 1; i++) {
-        // Inner loop for comparisons
         for (int j = 0; j < n - i - 1; j++) {
-            // Swap if current element is greater than next
             if (arr[j] > arr[j + 1]) {
-                // Traditional swap using temp variable
                 int temp = arr[j];
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
@@ -105,26 +83,12 @@ void bubbleSort(int arr[], int n) {
     }
 }
 
-// Function to print an array
-void printArray(int arr[], int size) {
-    for (int i = 0; i < size; i++) {
-        printf("%d ", arr[i]);
-    }
-    printf("\\n");
-}
-
 int main() {
-    int unsortedArray[] = {64, 34, 25, 12, 22, 11, 90};
-    int n = sizeof(unsortedArray) / sizeof(unsortedArray[0]);
-    
-    printf("Unsorted array: ");
-    printArray(unsortedArray, n);
-    
-    bubbleSort(unsortedArray, n);
-    
+    int arr[] = {64, 34, 25, 12, 22, 11, 90};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    bubbleSort(arr, n);
     printf("Sorted array: ");
-    printArray(unsortedArray, n);
-    
+    for (int i = 0; i < n; i++) printf("%d ", arr[i]);
     return 0;
 }`,
 
@@ -135,39 +99,20 @@ using namespace std;
 
 void bubbleSort(vector<int>& arr) {
     int n = arr.size();
-    
-    // Outer loop for passes
     for (int i = 0; i < n - 1; i++) {
-        // Inner loop for comparisons
         for (int j = 0; j < n - i - 1; j++) {
-            // Swap if current element is greater than next
             if (arr[j] > arr[j + 1]) {
-                // Using std::swap for cleaner code
                 swap(arr[j], arr[j + 1]);
             }
         }
     }
 }
 
-// Function to print an array
-void printArray(const vector<int>& arr) {
-    for (int num : arr) {
-        cout << num << " ";
-    }
-    cout << endl;
-}
-
 int main() {
-    vector<int> unsortedArray = {64, 34, 25, 12, 22, 11, 90};
-    
-    cout << "Unsorted array: ";
-    printArray(unsortedArray);
-    
-    bubbleSort(unsortedArray);
-    
+    vector<int> arr = {64, 34, 25, 12, 22, 11, 90};
+    bubbleSort(arr);
     cout << "Sorted array: ";
-    printArray(unsortedArray);
-    
+    for (int num : arr) cout << num << " ";
     return 0;
 }`,
 };

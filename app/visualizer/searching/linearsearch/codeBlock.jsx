@@ -55,7 +55,7 @@ public class LinearSearch {
         int[] numbers = {10, 20, 30, 40, 50};
         int target = 30;
         int result = linearSearch(numbers, target);
-        
+
         if (result != -1) {
             System.out.println("Element found at index: " + result);
         } else {
@@ -80,15 +80,15 @@ int main() {
     int numbers[] = {10, 20, 30, 40, 50};
     int size = sizeof(numbers) / sizeof(numbers[0]);
     int target = 30;
-    
+
     int result = linearSearch(numbers, size, target);
-    
+
     if (result != -1) {
         printf("Element found at index: %d\\n", result);
     } else {
         printf("Element not found\\n");
     }
-    
+
     return 0;
 }`,
 
@@ -109,9 +109,9 @@ int linearSearch(const vector<int>& arr, int target) {
 int main() {
     vector<int> numbers = {10, 20, 30, 40, 50};
     int target = 30;
-    
+
     int result = linearSearch(numbers, target);
-    
+
     if (result != -1) {
         cout << "Element found at index: " << result << endl;
     } else {
