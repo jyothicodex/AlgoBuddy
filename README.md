@@ -56,7 +56,7 @@ AlgoBuddy is an open-source, interactive DSA learning platform that brings algor
 
 ### 🏠 Home Page
 
-![Home Page](public/screenshots/home-page.png)
+![Home Page](public/screenshots/Home-page.png)
 
 ---
 
