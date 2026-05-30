@@ -21,7 +21,6 @@ export const metadata = {
 
 export default function Page() {
   return (
-<<<<<<< HEAD
     <>
       <TrackVisit name="Bubble Sort" path="/visualizer/sorting/bubblesort" category="Sorting" />
       <VisualizerPageLayout
@@ -48,7 +47,6 @@ export default function Page() {
         }
       />
     </>
-=======
     <VisualizerPageLayout
       paths={createVisualizerPaths("Sorting", "Bubble Sort")}
       title="Bubble Sort"
@@ -85,6 +83,5 @@ export default function Page() {
         />
       }
     />
->>>>>>> upstream/main
   );
 }

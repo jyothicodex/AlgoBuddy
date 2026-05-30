@@ -704,12 +704,9 @@ const Visualizer = () => {
     >
       <TutorialOverlay />
       <VisualizerClient initialSections={clientSections} />
-<<<<<<< HEAD
       <div className="w-full relative z-10">
         <RecentlyViewed />
-=======
       <div className="w-full relative">
->>>>>>> upstream/main
         
         <BackToTop />
         <Footer />

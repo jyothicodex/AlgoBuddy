@@ -4,7 +4,6 @@ import Quiz from "@/app/visualizer/sorting/countingsort/quiz";
 import Code from "@/app/visualizer/sorting/countingsort/codeBlock";
 import ExploreOther from "@/app/components/ui/exploreOther";
 import ModuleCard from "@/app/components/ui/ModuleCard";
-<<<<<<< HEAD
 import TrackVisit from "@/app/components/ui/TrackVisit";
 import VisualizerPageLayout, {
   createVisualizerPaths,
@@ -18,7 +17,6 @@ export const metadata = {
   openGraph: {
     images: [{ url: "/og/visualizer.png", width: 1200, height: 630, alt: "Counting Sort Algorithm Visualization" }],
   },
-=======
 import VisualizerPageLayout, { createVisualizerPaths } from "@/app/visualizer/components/VisualizerPageLayout";
 import { MODULE_MAPS } from "@/lib/modulesMap";
 
@@ -36,12 +34,10 @@ export const metadata = {
     "Counting Sort in Python",
     "Algorithm Visualization",
   ],
->>>>>>> upstream/main
 };
 
 export default function Page() {
   return (
-<<<<<<< HEAD
     <>
       <TrackVisit name="Counting Sort" path="/visualizer/sorting/countingsort" category="Sorting" />
       <VisualizerPageLayout
@@ -68,7 +64,6 @@ export default function Page() {
         }
       />
     </>
-=======
     <VisualizerPageLayout
       paths={createVisualizerPaths("Sorting", "Counting Sort")}
       title="Counting Sort"
@@ -96,6 +91,5 @@ export default function Page() {
         />
       }
     />
->>>>>>> upstream/main
   );
 }

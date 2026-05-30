@@ -21,7 +21,6 @@ export const metadata = {
 
 export default function Page() {
   return (
-<<<<<<< HEAD
     <>
       <TrackVisit name="Merge Sort" path="/visualizer/sorting/mergesort" category="Sorting" />
       <VisualizerPageLayout
@@ -48,7 +47,6 @@ export default function Page() {
         }
       />
     </>
-=======
     <VisualizerPageLayout
       paths={createVisualizerPaths("Sorting", "Merge Sort")}
       title="Merge Sort"
@@ -85,6 +83,5 @@ export default function Page() {
         />
       }
     />
->>>>>>> upstream/main
   );
 }
