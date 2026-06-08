@@ -36,6 +36,24 @@ const MCTSAnim = () => {
   const [highlightPath, setHighlightPath] = useState([]);
   const [stepExplanation, setStepExplanation] = useState("");
   const [stepCount, setStepCount] = useState(0);
+  const [history, setHistory] = useState([]);
+  const handleStepForward = () => {
+  if (!isPaused) return;
+
+  runTick();
+};
+  const handleStepBackward = () => {
+  if (history.length === 0) return;
+
+  const previous = history[history.length - 1];
+
+  setTree(previous.tree);
+  setHighlightPath(previous.highlightPath);
+  setStepCount(previous.stepCount);
+  setStepExplanation(previous.stepExplanation);
+
+  setHistory(prev => prev.slice(0, -1));
+};
 
   const {
     isPaused,
@@ -102,6 +120,16 @@ const MCTSAnim = () => {
       }
       lastPath = path;
     }
+
+    setHistory(prev => [
+  ...prev,
+  {
+    tree,
+    highlightPath,
+    stepCount,
+    stepExplanation,
+  },
+]);
 
     setTree(nodes);
     setHighlightPath(lastPath);
@@ -235,6 +263,24 @@ const MCTSAnim = () => {
                   className="bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 border border-gray-300 dark:border-gray-600 px-4 py-2 rounded-lg transition-colors shadow-sm"
                   disabled={speed <= 0.5}
                 >-</button>
+
+                <div className="flex gap-2">
+  <button onClick={() => setSpeed(0.5)}>
+    Slow
+  </button>
+
+  <button onClick={() => setSpeed(1)}>
+    Normal
+  </button>
+
+  <button onClick={() => setSpeed(2)}>
+    Fast
+  </button>
+
+  <button onClick={() => setSpeed(5)}>
+    Ultra Fast
+  </button>
+</div>
                 <span className="text-gray-700 dark:text-gray-300 font-medium min-w-[80px] text-center text-sm">
                   {speed}x speed
                 </span>
