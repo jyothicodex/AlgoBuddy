@@ -6,6 +6,7 @@ import GoButton from "@/app/components/ui/goButton";
 import PlaybackControls from "@/app/components/ui/PlaybackControls";
 import useVisualizerKeyboard from "@/app/hooks/useVisualizerKeyboard";
 import { useAnimationEngine } from "@/lib/visualizer/useAnimationEngine";
+import html2canvas from "html2canvas";
 import { 
   generateStatesFixedMax, 
   generateStatesFixedAvg, 
@@ -31,6 +32,7 @@ const Animation = () => {
   const [messageType, setMessageType] = useState("");
   const [showQuiz, setShowQuiz] = useState(false);
   const [discussion, setDiscussion] = useState("");
+  const visualizerRef = useRef(null);
 
   const elementRefs = useRef([]);
   const [steps, setSteps] = useState([]);
@@ -53,6 +55,17 @@ const Animation = () => {
       success: state.success,
       done: state.done
     });
+
+    const handleExportPNG = async () => {
+  if (!visualizerRef.current) return;
+
+  const canvas = await html2canvas(visualizerRef.current);
+
+  const link = document.createElement("a");
+  link.download = "sliding-window-visualization.png";
+  link.href = canvas.toDataURL("image/png");
+  link.click();
+};
 
     elementRefs.current.forEach((ref, index) => {
       if (!ref) return;
@@ -334,6 +347,7 @@ Please explain exactly what is happening in this step in detail.`;
       )}
 
       {dataArray.length > 0 && (
+         <div ref={visualizerRef}>
         <div className="max-w-5xl mx-auto space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-white dark:bg-gray-800 p-5 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm flex flex-col justify-center">
@@ -342,6 +356,7 @@ Please explain exactly what is happening in this step in detail.`;
                 <span className="text-sm font-semibold text-[#a435f0] dark:text-[#c56eff] uppercase tracking-wide">
                   Current Step
                 </span>
+              </div>
               </div>
               <p
   aria-live="polite"
