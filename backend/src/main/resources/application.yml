@@ -6,6 +6,9 @@ spring:
     url: ${DB_URL:jdbc:postgresql://localhost:5432/postgres}
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:password}
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 1
 
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
