@@ -46,6 +46,13 @@ export default function PracticePage() {
   const [selectedTopic, setSelectedTopic] = useState("All Topics");
   const [selectedCompanyFilter, setSelectedCompanyFilter] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
+  const [bookmarkNotes, setBookmarkNotes] = useState(() => {
+  if (typeof window !== "undefined") {
+    const saved = localStorage.getItem("algo_bookmark_notes");
+    return saved ? JSON.parse(saved) : {};
+  }
+  return {};
+});
   const itemsPerPage = 10;
 
   // Selected problem for Theory Drawer
@@ -90,6 +97,11 @@ export default function PracticePage() {
     }
     return true;
   };
+ const handleNoteChange = (problemId, text) => {
+  const updatedNotes = { ...bookmarkNotes, [problemId]: text };
+  setBookmarkNotes(updatedNotes);
+  localStorage.setItem("algo_bookmark_notes", JSON.stringify(updatedNotes));
+}; 
 
   // Dynamically flatten all problems from practiceData (Zero Hardcoding!)
   const allProblems = useMemo(() => {
@@ -512,6 +524,7 @@ export default function PracticePage() {
                           <th className="py-4 px-5 text-center">Company</th>
                           <th className="py-4 px-5 text-center">Status</th>
                           <th className="py-4 px-5 text-center">Actions</th>
+                          <th className="py-4 px-5 text-center text-[10px] font-black uppercase tracking-wider text-slate-400 dark:text-neutral-500">Notes</th>
                           <th className="py-4 px-5 text-center">Remove</th>
                         </tr>
                       </thead>
@@ -558,6 +571,17 @@ export default function PracticePage() {
                                   </button>
                                 </div>
                               </td>
+                              <td className="py-4 px-5 text-center">
+  {isBookmarked && isBookmarked(prob.id) && (
+    <input
+      type="text"
+      value={bookmarkNotes[prob.id] || ""}
+      onChange={(e) => handleNoteChange(prob.id, e.target.value)}
+      placeholder="Add a logic hint..."
+      className="w-32 px-2 py-1 text-[10px] font-bold border border-slate-200 dark:border-neutral-800 bg-slate-50 dark:bg-neutral-900 rounded-lg focus:outline-none focus:border-primary text-slate-700 dark:text-neutral-300 placeholder-slate-400"
+    />
+  )}
+</td>
                               <td className="py-4 px-5 text-center">
                                 <div className="flex items-center justify-center gap-2">
                                   <button
